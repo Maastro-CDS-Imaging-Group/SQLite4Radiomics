@@ -1,0 +1,6 @@
+from logic.feature_extractor.feature_calculator import FeatureCalculator
+from logic.feature_extractor.standard_feature_calculator import StandardFeatureCalculator
+
+
+class StandardFeatureCalculatorMockUp(StandardFeatureCalculator, FeatureCalculator):
+    pass

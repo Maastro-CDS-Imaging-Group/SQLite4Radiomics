@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+
+        <button mat-button [matMenuTriggerFor]="menu" class="menu-part" >
+            <mat-icon style='transform: scale(1.5);' >menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" >
+            <button (click) = "[openFile('/parameter-file/'), getType('-params/')]" mat-menu-item >
+                <mat-icon>build</mat-icon>
+                <b>Modify Parameter File</b>
+            </button>
+
+            <button (click) = "[openFile('/config-file/'), getType('-config/')]" mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <b>Modify Configuration File</b>
+            </button>
+
+            <button (click) = "recalculate('start-recalculate')" mat-menu-item>
+                <mat-icon>iso</mat-icon>
+                <b>Recalculate Features</b>
+            </button>
+
+            <button (click)="downloadZipFile('/download-csv/')" mat-menu-item>
+                <mat-icon>save_alt</mat-icon>
+                <b>Download CSV Files</b>
+            </button>
+
+            <button (click)="deleteCSV('/delete-csv/')" mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <b>Delete CSV Files</b>
+            </button>
+
+            <button (click)="downloadZipFile('/download-logs/')" mat-menu-item>
+                <mat-icon>library_books</mat-icon>
+                <b>Download Log Files</b>
+            </button>
+
+        </mat-menu>
+        <span class="header-main"><b>Radiomic Feature Extraction Pipeline</b></span>
+        <span class="special-spacer"></span>
+        <button (click) = "openHelp()"  mat-button>
+            <mat-icon class="help-icon" style='transform: scale(2);' aria-hidden="false">help_outline</mat-icon>
+        </button>
+
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,6 @@
+<div class="outer-wrapper">
+  <ul>
+    <li *ngFor="let msg of messages">{{ msg.text }}</li>
+  </ul>
+</div>
+<button (click)="onCancel()" mat-button>Cancel</button>

@@ -1,0 +1,1 @@
+select df.radiomicpat from Dicomradiomicfeaturevalue as df join Dicomradiomics as dr on df.radiomicpath=dr.radiomicpat where df.value like %s and dr.timeofcalculation like %s;

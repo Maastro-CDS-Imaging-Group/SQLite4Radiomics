@@ -1,0 +1,4 @@
+.read ./queries/sqlite/delete_tables_from_database.sql
+.read ./queries/sqlite/roi/create_roi_table.sql
+.read ./queries/sqlite/roi_series/create_series_roi_table2.sql
+.read ./queries/sqlite/radiomics/create_radiomics_tables2.sql

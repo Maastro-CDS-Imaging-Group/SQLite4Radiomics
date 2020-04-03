@@ -1,0 +1,5 @@
+conda create -n RadiomicFeatureExtractionPipeline python=3.4
+activate RadiomicFeatureExtractionPipeline
+call install_python_packages_without_anaconda.bat
+deactivate RadiomicFeatureExtractionPipeline
+pause

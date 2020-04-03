@@ -1,0 +1,12 @@
+.container {
+    padding-bottom: 10px;
+}
+
+.container h3 {
+    color: #00AFDC;
+}
+
+.outer {
+    max-height: 40vw;
+    overflow-y: auto;
+}

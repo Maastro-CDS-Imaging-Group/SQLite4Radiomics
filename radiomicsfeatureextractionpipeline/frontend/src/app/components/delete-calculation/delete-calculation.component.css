@@ -1,0 +1,40 @@
+
+.calendar-wrapper{
+    width: 300px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.outer {
+    max-height: 40vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60vw;
+}
+
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  height: auto !important;
+}
+
+.special-date {
+    background: orange;
+    border-radius: 100%;
+}
+
+p {
+  overflow: hidden !important;
+}
+
+.selection-wrapper {
+      padding: 10px;
+      width: 100%;
+      overflow-y: auto;
+}
+
+.bottom-section {
+      padding-top: 20px;
+}

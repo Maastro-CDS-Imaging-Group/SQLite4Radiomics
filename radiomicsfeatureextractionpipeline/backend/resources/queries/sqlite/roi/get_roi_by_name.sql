@@ -1,0 +1,4 @@
+SELECT *
+FROM DICOMROI
+WHERE Name = :name
+ORDER BY Priority

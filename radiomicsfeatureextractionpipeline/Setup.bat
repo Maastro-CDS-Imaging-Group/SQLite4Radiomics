@@ -1,0 +1,1 @@
+scripts\venv-setup & venv\scripts\activate & scripts\install-python-packages & scripts\conquest-setup & scripts\install-node-packages

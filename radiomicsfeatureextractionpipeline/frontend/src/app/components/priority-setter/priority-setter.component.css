@@ -1,0 +1,28 @@
+.priority-setter {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .mat-form-field {
+    padding: 15px;
+  }
+
+  .dialog-container {
+    height: 40vw;
+    overflow: auto;
+  }
+
+  .button-area {
+    padding-top: 10px;    
+  }
+
+  .button-area button {
+    margin-left: 5px;
+  }
+
+input[type=number]::-webkit-inner-spin-button {  
+
+   opacity: 1;
+
+}

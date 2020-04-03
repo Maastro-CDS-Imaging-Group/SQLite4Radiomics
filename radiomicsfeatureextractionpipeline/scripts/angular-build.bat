@@ -1,0 +1,1 @@
+cd ../frontend & ng build --base-href ./

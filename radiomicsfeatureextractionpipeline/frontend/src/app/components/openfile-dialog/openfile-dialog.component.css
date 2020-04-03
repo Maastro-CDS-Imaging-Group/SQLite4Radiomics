@@ -1,0 +1,17 @@
+.this-full-width {
+    width: 75vw;
+
+  }
+
+  .fileText {
+    max-height: 30vw;
+    overflow-y: scroll;  
+ }
+ .button-area {
+   display: flex;
+   flex-flow: row;
+ }
+
+ .button-area > button{
+   margin: auto;
+ }

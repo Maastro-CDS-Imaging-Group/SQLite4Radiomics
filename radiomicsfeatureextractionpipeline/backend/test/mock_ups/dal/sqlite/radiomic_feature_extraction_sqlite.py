@@ -1,0 +1,6 @@
+from dal.sqlite.radiomic_feature_repository_sqlite import RadiomicFeatureRepositorySqlite
+from test.mock_ups.dal.radiomic_feature_repository import RadiomicFeatureRepositoryMockUp
+
+
+class RadiomicFeatureRepositorySqliteMockUp(RadiomicFeatureRepositorySqlite, RadiomicFeatureRepositoryMockUp):
+    pass

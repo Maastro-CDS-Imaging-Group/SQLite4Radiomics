@@ -1,0 +1,13 @@
+<div class="dialog-container">
+  <form class="priority-setter">
+    <mat-form-field *ngFor="let roi of roiList">
+      <input matInput ngModel [(ngModel)] = "roi.priority" [ngModelOptions]="{standalone: true}" type="number" [placeholder]="roi.name" min="1" max="10" onKeyDown="return false">
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div class="button-area">
+  <button color="warn" mat-button (click)="onCancel()" cdkFocusInitial>Cancel</button>
+  <button color="primary" mat-button (click)="onSubmit()">Submit</button>
+</div>

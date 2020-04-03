@@ -1,0 +1,2 @@
+INSERT INTO DICOMRadiomics(RadiomicPat, RadiomicSeriesOfImageSlicesModality, RadiomicSeriesOfImageSlices, RadiomicRtstructSeries, TimeOfCalculation)
+VALUES(:patient_id, :series_images_slices_modality, :series_image_slices_id, :rtstruct_series_id, :time)

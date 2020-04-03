@@ -1,0 +1,61 @@
+<div class ="outer">
+  <div class="container">
+    <h3>Modify Parameter File</h3>
+    <p>
+      Opens yaml parameter file and let's you edit and save it, as well as restore to default or previous version.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Modify Configuration File</h3>
+    <p>
+      Opens the config ini file and let's you edit and save it, as well as restore to default or previous version.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Recalculate Features</h3>
+    <p>
+      Request radiomics pipeline extraction on all currently stored DICOM data.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Download CSV Files</h3>
+    <p>
+      Downloads CSV files currently in storage as zip archive.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Download Log Files</h3>
+    <p>
+      Downloads log files currently in storage as zip archive.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Set ROI Priority</h3>
+    <p>
+      Run the ROI priority setter, where you can set the priority for each region of interest to be used in radiomic calculations. Give an interger value, 1 being the highest priority and 10 being lowest priority. If no priority has of yet been given to a specific ROI, you will see the value -1.
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Reinitialize Radiomics Tables</h3>
+    <p>
+      Deletes all radiomics tables and creates them again.
+    </p>
+    <p style="color:red;">
+      WARNING: All data stored in those tables will get deleted!
+    </p>
+  </div>
+
+  <div class="container">
+    <h3>Delete Calculation</h3>
+    <p>
+      Allows you to pick a calculation that was previously executed, by picking the day and time of said calculation, and delete it.
+    </p>
+  </div>
+</div>
+<button color="primary" mat-button style="margin-top: 20px;" (click)="onCloseClick()">Close</button>

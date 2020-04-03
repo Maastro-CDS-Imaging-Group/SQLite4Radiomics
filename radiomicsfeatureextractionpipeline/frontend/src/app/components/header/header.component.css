@@ -1,0 +1,16 @@
+.special-spacer {
+    flex: 1 1 auto;
+}
+
+.menu-part {
+   flex: 0 0 auto;
+}
+.mat-toolbar .mat-button{
+    height: 100%;
+}
+
+.mat-toolbar .header-main{
+    flex: 1 1 auto;
+    text-align: end;
+
+}

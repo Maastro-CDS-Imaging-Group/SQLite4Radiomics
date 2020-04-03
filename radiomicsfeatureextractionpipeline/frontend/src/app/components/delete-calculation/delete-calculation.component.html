@@ -1,0 +1,24 @@
+<div class="outer">
+  <div class="calendar-wrapper">
+    
+    <mat-calendar #calendar [dateClass]="dateClass()" (monthSelected)="monthSelected($event)" [(selected)]="selectedDate" (selectedChange)="dateChanged()">
+    </mat-calendar>
+
+    <button mat-button color="primary" (click)="today()">Today</button>
+  </div>
+
+  <div class="selection-wrapper">
+    <mat-selection-list #calculationList [(ngModel)] = "selectedOptions" (change)="changeOption($event)">
+      <mat-list-option *ngFor="let calc of temp" [value]='calc' style="margin: 5px;">
+        <p><b>Date:</b>  {{calc.calculation_date}}</p>
+        <p><b>Parameters used:</b> {{calc.Value}} </p>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+
+  <div class="bottom-section">
+    <span style= "padding-right: 10px;"><b>Calculations selected:</b> {{calculationList.selectedOptions.selected.length}}</span>
+    <button mat-button color="warn" (click)="delete(calculationList.selectedOptions.selected)">Delete</button>
+    <button color="primary" mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+  </div>
+</div>

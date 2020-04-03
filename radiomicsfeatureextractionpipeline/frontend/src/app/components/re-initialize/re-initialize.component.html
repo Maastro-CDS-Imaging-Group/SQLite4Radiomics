@@ -1,0 +1,6 @@
+  <div>
+    <p>Are you sure you want to Re-initialize the radiomic tables?</p>
+    <p style="color: red; padding-bottom: 10px">Warning: All data currently stored in those tables will get deleted!</p>
+  </div>
+  <button style="margin-right: 10px" color="warn" (click)="onCancelClick()" mat-button>Cancel</button>
+  <button color="primary" mat-button (click)="onYes('yes')">Yes</button>

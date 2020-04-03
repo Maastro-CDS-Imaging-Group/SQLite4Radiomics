@@ -1,0 +1,3 @@
+SELECT R.RadiomicPat AS 'Patient Id', RIS.Modality AS 'Modality Image Slices Series', R.RadiomicSeriesOfImageSlices AS 'CT or PET series instance', R.RadiomicRtstructSeries AS 'Rtstruct series instance',  R.TimeOfCalculation AS 'Time of calculation', ROI.Name AS 'Roi name', RFLT.name || '_' || RCLS.name || '_' || RF.name AS 'Feature', RFV.Value AS 'Value'
+FROM DICOMRadiomicFeatureValue RFV, DICOMRadiomics R, DICOMROI ROI, DICOMRadiomicFilter RFLT, DICOMRadiomicClass RCLS, DICOMRadiomicFeature RF, DICOMSeries RIS
+WHERE R.RadiomicsId = :radiomic_id AND RFV.RadiomicsId = R.RadiomicsId AND RFV.RoiId = ROI.RoiId AND RFV.FilterId = RFLT.FilterId AND RFV.ClassId = RCLS.ClassId AND RFV.FeatureId = RF.RadiomicFeatureId AND R.RadiomicSeriesOfImageSlices = RIS.SeriesInst

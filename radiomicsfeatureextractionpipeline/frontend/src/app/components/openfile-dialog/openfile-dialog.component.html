@@ -1,0 +1,15 @@
+<form>
+    <mat-form-field class="this-full-width">
+        <textarea class="fileText" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+        [(ngModel)] = "text"
+        [ngModelOptions]="{standalone: true}"></textarea>
+        <div style = "padding: 10px"></div>
+
+        <div class="button-area">
+            <button color="warn" mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+            <button color="primary" mat-button [mat-dialog-close] = "text">Save to File</button>
+            <button color="primary" mat-button (click)="onRestore('/restore-default')">Restore to Default</button>
+            <button color="primary" mat-button (click)="onRestore('/restore-old')">Restore to Previous Version</button>
+        </div>
+    </mat-form-field>
+</form>

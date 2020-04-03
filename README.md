@@ -72,7 +72,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Talia Santos** - *GUI and production development* - Radboudumc Radiotherapy & Fontys
+* **Ivan Zhovannik** - *Initial idea* - Radboudumc Radiotherapy & [CDS Maastro](https://gitlab.com/UM-CDS/distributedradiomics)
+* **Lars L.G. van Driel** - *Initial development* - Radboudumc Radiotherapy & Fontys
+* **Johan Bussink** - *Clinical support* - Radboudumc Radiotherapy
+* **Ren'e Monshouwer** - *Principle Investigator* - Radboudumc Radiotherapy
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 

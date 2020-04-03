@@ -70,7 +70,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
-## Authors
+## Authors and citation
 
 * **Talia Santos** - *GUI and production development* - Radboudumc Radiotherapy & Fontys
 * **Ivan Zhovannik** - *Initial idea* - Radboudumc Radiotherapy & [CDS Maastro](https://gitlab.com/UM-CDS/distributedradiomics)
@@ -78,7 +78,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Johan Bussink** - *Clinical support* - Radboudumc Radiotherapy
 * **Ren'e Monshouwer** - *Principle Investigator* - Radboudumc Radiotherapy
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+The technical note about SQLite4radioics is in preparation.
 
 ## License
 

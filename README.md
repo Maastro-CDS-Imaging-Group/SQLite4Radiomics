@@ -1,6 +1,6 @@
-# SQLite4radiomics
+# SQLite4Radiomics
 
-SQLite4radiomics is an integration project of the popular PACS driver Conquest with radiomics extraction package 
+SQLite4Radiomics is an integration project of the popular PACS driver Conquest with radiomics extraction package 
 
 ## Getting Started
 

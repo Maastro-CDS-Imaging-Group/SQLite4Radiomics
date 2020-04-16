@@ -16,21 +16,23 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+1. Clone the git repository with
 
 ```
-Give the example
+git clone https://github.com/ivanzhovannik/SQLite4Radiomics
 ```
 
-And repeat
+2. As *Conquest DICOM* is an independent software, download it from https://ingenium.home.xs4all.nl/dicom.html
+
+3. Unzip conquest into
 
 ```
-until finished
+./SQLite4Radiomics/radiomicsfeatureextractionpipeline/conquest/
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+4. Run 
+
+//End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 

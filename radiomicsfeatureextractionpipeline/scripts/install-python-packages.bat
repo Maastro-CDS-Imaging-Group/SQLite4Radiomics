@@ -1,1 +1,1 @@
-pip install -r scripts\requirements.txt
+pip install --user -r scripts\requirements.txt

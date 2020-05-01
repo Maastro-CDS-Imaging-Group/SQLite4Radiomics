@@ -131,6 +131,10 @@ The technical note about SQLite4radioics is in preparation.
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+Copyright (c) 2020 University of Manchester. Developed by Marcel van Herk, Lambert Zijp and Jan Meinders; the Netherlands Cancer Institute; Radiotherapy Department; maintained by Marcel van Herk, University of Manchester.
+
+Copyright (c) 1995 Regents of the University of California. All rights reserved. Developed by: Mark Oskin, mhoskin@ucdavis.edu; University of California, Davis Medical Center; Department of Radiology with a Solaris port done and maintained by: Terry Rosenbaum; Michigan State University; Department of Radiology.
+
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used

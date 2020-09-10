@@ -1,5 +1,4 @@
 
 radiomicsfeatureextractionpipeline/venv/
-radiomicsfeatureextractionpipeline/conquest/data/dbase/*.dcm
-
+radiomicsfeatureextractionpipeline/conquest/data/*.dcm
 radiomicsfeatureextractionpipeline/conquest/dicom.ini

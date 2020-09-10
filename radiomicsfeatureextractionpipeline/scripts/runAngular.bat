@@ -1,1 +1,1 @@
-cd frontend & ng serve
+cd frontend & npx ng serve

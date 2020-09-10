@@ -1,1 +1,1 @@
-cd ../frontend & ng build --base-href ./
+cd ../frontend & npx ng build --base-href ./

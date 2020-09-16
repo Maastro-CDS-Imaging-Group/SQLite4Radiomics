@@ -1,6 +1,8 @@
 @echo Installing Plastimatch
 setlocal 
 
+mkdir backend\tools
+
 set REL_PATH=backend\tools
 set ABS_PATH=
 

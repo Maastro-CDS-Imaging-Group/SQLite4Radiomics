@@ -46,22 +46,10 @@ from logic.logic import Logic
 from logic.roi_selector.roi_selector import ROISelector
 from logic.roi_selector.roi_selector_properties import \
     ROISelectorProperties
+from logic.utils.logging_utils import setup_logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+setup_logging(filename='logs/bootstrapper.log')
 
-error_logger_formatter = logging.Formatter('%(asctime)s:%(name):%(message)s')
-
-file_handler = logging.FileHandler('logs/bootstrapper.log')
-file_handler.setLevel(logging.ERROR)
-file_handler.setFormatter(error_logger_formatter)
-
-debug_logger_formatter = logging.Formatter('%(asctime)s:%(message)s')
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(debug_logger_formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
 
 
 class Bootstrapper:

@@ -24,24 +24,17 @@ from logic.entities.rtstruct_series import RtstructSeries
 from logic.entities.series import Series
 from logic.entities.series_with_image_slices import SeriesWithImageSlices
 from logic.dicom_file_reader.image_reader import read_dcm_series, write_with_sitk
+
 from pathlib import Path
+
 import subprocess
 
 logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-error_logger_formatter: logging.Formatter = logging.Formatter('%(asctime)s:%(name):%(message)s')
+from logic.utils.logging_utils import setup_logging
 
-file_handler: logging.FileHandler = logging.FileHandler('logs/logic.log')
-file_handler.setLevel(logging.ERROR)
-file_handler.setFormatter(error_logger_formatter)
-
-debug_logger_formatter: logging.Formatter = logging.Formatter('%(asctime)s:%(message)s')
-stream_handler: logging.StreamHandler = logging.StreamHandler()
-stream_handler.setFormatter(debug_logger_formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+setup_logging(filename='logs/logic.log')
 
 
 class Logic:

@@ -10,6 +10,8 @@ from typing import Any, Optional
 import pandas as pd
 
 from dal.database_connector import DatabaseConnector
+from logic.utils.logging_utils import setup_logging
+
 
 logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -28,16 +30,8 @@ if not os.path.exists(logger_path):
     open(logger_path, 'w+')
 
 
-file_handler: logging.FileHandler = logging.FileHandler(logger_path)
-file_handler.setLevel(logging.ERROR)
-file_handler.setFormatter(error_logger_formatter)
 
-debug_logger_formatter: logging.Formatter = logging.Formatter('%(asctime)s:%(message)s')
-stream_handler: logging.StreamHandler = logging.StreamHandler()
-stream_handler.setFormatter(error_logger_formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+setup_logging(filename=logger_path)
 
 
 class DatabaseConnectorSqlite(DatabaseConnector):

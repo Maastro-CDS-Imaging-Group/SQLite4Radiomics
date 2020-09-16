@@ -79,7 +79,7 @@ class Logic:
         self.radiomic_feature_calculator: FeatureCalculator = radiomic_feature_calculator
         self.roi_selector: ROISelector = roi_selector
         self.data_path: Path = Path('../conquest/data').resolve()
-        self.plastimatch_path: Path = Path("tools/bin/plastimatch.exe").resolve()
+        self.plastimatch_path: Path = Path("tools/Plastimatch/bin/plastimatch.exe").resolve()
 
     def get_patient_overview(self) -> List[Patient]:
         """

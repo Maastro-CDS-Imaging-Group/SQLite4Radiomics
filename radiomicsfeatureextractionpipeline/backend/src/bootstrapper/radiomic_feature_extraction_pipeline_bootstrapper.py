@@ -48,6 +48,10 @@ from logic.roi_selector.roi_selector_properties import \
     ROISelectorProperties
 from logic.utils.logging_utils import setup_logging
 
+
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 setup_logging(filename='logs/bootstrapper.log')
 
 

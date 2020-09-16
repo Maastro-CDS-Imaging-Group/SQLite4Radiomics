@@ -11,6 +11,9 @@ from logic.utils.logging_utils import setup_logging
 
 setup_logging(filename='logs/dicom_file_reader.log')
 
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 logger.info('pydicom version: {0}'.format(str(pydicom.__version__)))
 
 

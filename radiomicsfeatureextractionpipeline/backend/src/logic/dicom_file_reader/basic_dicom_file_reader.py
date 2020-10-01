@@ -9,7 +9,7 @@ from logic.dicom_file_reader.dicom_file_reader import DicomFileReader
 from logic.entities.image import Image
 from logic.utils.logging_utils import setup_logging
 
-setup_logging(filename='logs/dicom_file_reader.log')
+setup_logging(filename='logs/dicom_file_reader.log', name=__name__)
 
 logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

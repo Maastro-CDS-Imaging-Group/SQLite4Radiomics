@@ -31,7 +31,7 @@ if not os.path.exists(logger_path):
 
 
 
-setup_logging(filename=logger_path)
+setup_logging(filename=logger_path, name=__name__)
 
 
 class DatabaseConnectorSqlite(DatabaseConnector):

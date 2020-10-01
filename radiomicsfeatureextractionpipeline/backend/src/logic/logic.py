@@ -28,13 +28,19 @@ from logic.dicom_file_reader.image_reader import read_dcm_series, write_with_sit
 from pathlib import Path
 
 import subprocess
-
-logger: logging.Logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+import time
 
 from logic.utils.logging_utils import setup_logging
 
-setup_logging(filename='logs/logic.log')
+
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+setup_logging(filename='logs/logic.log', name=__name__)
+
+
+perf_logger: logging.Logger = logging.getLogger('performance')
+perf_logger.setLevel(logging.DEBUG)
+
 
 
 class Logic:
@@ -160,12 +166,20 @@ class Logic:
             image_path = intermediate_path.resolve() / "image.nrrd"
 
             write_with_sitk(image, image_path)
-            
+
+
+
+            plastimatch_start_time: float = time.perf_counter()
+
             plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder)} \
                     --output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
 
             logger.info(f"Running plastimatch command: {plastimatch_command.split()}")
             out = subprocess.check_output(plastimatch_command.split())
+
+            plastimatch_run_time: float = time.perf_counter() - plastimatch_start_time
+
+            perf_logger.info(f"Took {plastimatch_run_time} to run plastimatch conversion")
 
             # Loads all the ROI's from the RTSTRUCT.
             rois: Dict[ROI, int] = self.roi_selector.get_rois_of_rtstruct(rtstruct)
@@ -191,8 +205,10 @@ class Logic:
             succesful_feature_calculations: int = 0
 
             roi: ROI
+
             # Calculates radiomic feature for all ROI's.
-            
+            pyradiomics_start_time: float = time.perf_counter()
+
             for roi in rois:
                 # Gets the number of the roi from the database.
                 roi_number: int = self.data_access_layer.roi_repos.get_dicom_segmentation(rtstruct_series, roi).number
@@ -226,6 +242,10 @@ class Logic:
             logger.info("Successfully calculated radiomic features for {0} of {1} ROI's".format(
                 succesful_feature_calculations, len(rois)))
 
+
+            pyradiomics_run_time: float = time.perf_counter() - pyradiomics_start_time
+
+            perf_logger.info(f"Took {pyradiomics_run_time} to run pyradiomics feature extraction over all selected ROIs")
             # Gets a path to the csv file with all calculated results.
             self.data_access_layer.get_radiomic_feature_repos().get_radiomic_calculation_result(
                 radiomic_calculation.identity)

@@ -5,9 +5,8 @@ from os import PathLike
 
 def setup_logging(use_stdout: Optional[bool] = True,
                   filename: Optional[PathLike] = None,
-                  log_level: Optional[str] = 'INFO') -> None:
+                  log_level: Optional[str] = 'INFO', name: Optional[str]='') -> None:
     """
-    Setup logging for DIRECT.
     Parameters
     ----------
     use_stdout : bool
@@ -26,7 +25,7 @@ def setup_logging(use_stdout: Optional[bool] = True,
     logging.captureWarnings(True)
     log_level = getattr(logging, log_level)
 
-    root = logging.getLogger('')
+    root = logging.getLogger(name)
     root.setLevel(log_level)
 
     formatter = logging.Formatter(

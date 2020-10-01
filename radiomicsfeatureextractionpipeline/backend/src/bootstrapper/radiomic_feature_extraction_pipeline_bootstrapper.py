@@ -51,9 +51,7 @@ from logic.utils.logging_utils import setup_logging
 
 logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-
-setup_logging(filename='logs/bootstrapper.log')
-
+setup_logging(filename='logs/bootstrapper.log', name=__name__, use_stdout=False)
 
 
 class Bootstrapper:

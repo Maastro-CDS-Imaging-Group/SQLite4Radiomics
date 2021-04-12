@@ -34,7 +34,7 @@ for directory in tqdm(glob(root + "/*/")):
     directory = directory.replace("\\", "/")
     
     # new directory name
-    directory_new = root_new + directory.split("/")[-2]
+    directory_new = root_new + "/" + directory.split("/")[-2]
     
     # create the patient directory if not existent
     if not os.path.exists(directory_new):

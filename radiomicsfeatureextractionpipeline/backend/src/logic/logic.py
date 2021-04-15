@@ -6,6 +6,7 @@ import datetime
 import logging
 from typing import List, Tuple, Dict
 import tempfile
+import shutil
 
 import SimpleITK as sitk
 
@@ -138,11 +139,16 @@ class Logic:
             # Loads the path of the DICOM-file from the CT-, PET- or MRI- series' images.
             dicom_paths: List[Path] = [self.data_path / image.object_file for image in series_of_image_slices.images]
     
-            subject_folder = dicom_paths[0].parent.resolve()
+            subject_folder = tempfile.TemporaryDirectory()
+
+            # Copy dicom paths of a particular series into subject folder
+            for dicom_path in dicom_paths:
+                dicom_path = dicom_path.resolve()
+                shutil.copy(dicom_path, Path(subject_folder.name) / dicom_path.name)
+
 
             # Loads the sitk_image and data from the DICOM paths!
             data, image, metadata = read_dcm_series(dicom_paths, return_sitk=True)
-
 
 
             # Loads the data of the DICOM-file from the RTSTRUCT-series image.
@@ -171,7 +177,7 @@ class Logic:
 
             plastimatch_start_time: float = time.perf_counter()
 
-            plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder)} \
+            plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder.name)} \
                     --output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
 
             logger.info(f"Running plastimatch command: {plastimatch_command.split()}")

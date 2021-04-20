@@ -21,9 +21,9 @@ def main(args):
         f_ibsi = f_ibsi.lstrip("F").replace(".", "_")
         match_condition = benchmark_df['tag'].str.contains(f_ibsi)
 
-        benchmark_df['your_result'][match_condition] = pipeline_df[f_pyradiomics].values[0]
+        benchmark_df.loc[match_condition, 'your_result'] = pipeline_df[f_pyradiomics].values[0]
 
-        benchmark_df['pyradiomics_tag'][match_condition] = f_pyradiomics
+        benchmark_df.loc[match_condition, 'pyradiomics_tag'] = f_pyradiomics
 
         tags_of_interest.append(benchmark_df[match_condition & benchmark_df['benchmark_value'].notnull()])
 

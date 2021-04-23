@@ -1,5 +1,15 @@
+!.gitignore
 
-radiomicsfeatureextractionpipeline/venv/
+!radiomicsfeatureextractionpipeline/venv/
+radiomicsfeatureextractionpipeline/venv/*
+
+!radiomicsfeatureextractionpipeline/venv/Lib/
+radiomicsfeatureextractionpipeline/venv/Lib/*
+
+!radiomicsfeatureextractionpipeline/venv/Lib/site-packages/
+radiomicsfeatureextractionpipeline/venv/Lib/site-packages/*
+!radiomicsfeatureextractionpipeline/venv/Lib/site-packages/radiomics/
+
 radiomicsfeatureextractionpipeline/conquest/data/*/*.dcm
 radiomicsfeatureextractionpipeline/conquest/dicom.ini
 radiomicsfeatureextractionpipeline/backend/tools/*

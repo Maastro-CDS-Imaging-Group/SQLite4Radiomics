@@ -7,8 +7,23 @@ This module gets its input from a query and performs the feature extraction on t
 import sqlite3
 from typing import Any
 import time
+import logging
 
 from src.bootstrapper.radiomic_feature_extraction_pipeline_bootstrapper import Bootstrapper
+from src.logic.utils.logging_utils import setup_logging
+
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+
+
+setup_logging(filename='logs/calculator.log', name=__name__, use_stdout=False)
+
+
+perf_logger: logging.Logger = logging.getLogger('performance')
+perf_logger.setLevel(logging.DEBUG)
+setup_logging(filename='logs/performance.log', name='performance')
+
 
 class Calculator(Bootstrapper):
 
@@ -31,7 +46,13 @@ class Calculator(Bootstrapper):
         self.get_progress()
         self.progress = 'Starting Calculation'
         self.get_progress()
+
+        execution_start_time: float = time.perf_counter()
+        
         self.execute_calculation()
+        execution_run_time: float = time.perf_counter() - execution_start_time
+        perf_logger.info(f"Took {execution_run_time} to run all calcuations across entire stored data!")
+
         time.sleep(3)
         self.progress = 'No process running or the process has finished'
         time.sleep(7)
@@ -69,7 +90,14 @@ class Calculator(Bootstrapper):
         """ get the query results and perform feature extraction on each value.
         If the process is cancelled, first finish current calculation, and then stop
         """
+        query_start_time: float = time.perf_counter()
+
         self.get_query_result()
+
+        query_run_time: float = time.perf_counter() - query_start_time
+        perf_logger.info(f"Took {query_run_time} to run query on the database!")
+
+
 
         if len(self.instances) > 0:
             for value in self.instances:
@@ -90,10 +118,17 @@ class Calculator(Bootstrapper):
     def call_function(self, value) -> Any:
         """ Calls the feature extraction function and sets the progress value
         """
+        logic_start_time: float = time.perf_counter()
+
         self.logic.extract_features(value)
         self.finished += 1
         self.progress = f'{self.finished} out of {len(self.instances)} finished'
         self.get_progress()
+
+
+        logic_run_time: float = time.perf_counter() - logic_start_time
+
+        perf_logger.info(f"Took {logic_run_time} to run program logic on the {self.finished}/{len(self.instances)} instances")
 
     def set_cancelled(self) -> bool:
         """ Sets calculation process state to cancelled

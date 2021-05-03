@@ -7,22 +7,12 @@ from pydicom.errors import InvalidDicomError
 
 from logic.dicom_file_reader.dicom_file_reader import DicomFileReader
 from logic.entities.image import Image
+from logic.utils.logging_utils import setup_logging
 
-logger = logging.getLogger(__name__)
+setup_logging(filename='logs/dicom_file_reader.log', name=__name__)
+
+logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-
-error_logger_formatter = logging.Formatter('%(asctime)s:%(name):%(message)s')
-
-file_handler = logging.FileHandler('logs/dicom_file_reader.log')
-file_handler.setLevel(logging.ERROR)
-file_handler.setFormatter(error_logger_formatter)
-
-debug_logger_formatter = logging.Formatter('%(asctime)s:%(message)s')
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(debug_logger_formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
 
 logger.info('pydicom version: {0}'.format(str(pydicom.__version__)))
 

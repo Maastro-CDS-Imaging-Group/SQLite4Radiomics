@@ -5,6 +5,8 @@ This module serves as a facade class for the core functionality of the tool.
 import datetime
 import logging
 from typing import List, Tuple, Dict
+import tempfile
+import shutil
 
 import SimpleITK as sitk
 
@@ -22,22 +24,24 @@ from logic.roi_selector.roi_selector import ROISelector
 from logic.entities.rtstruct_series import RtstructSeries
 from logic.entities.series import Series
 from logic.entities.series_with_image_slices import SeriesWithImageSlices
+from logic.dicom_file_reader.image_reader import read_dcm_series, write_with_sitk
+
+from pathlib import Path
+
+import subprocess
+import time
+
+from logic.utils.logging_utils import setup_logging
+
 
 logger: logging.Logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+setup_logging(filename='logs/logic.log', name=__name__)
 
-error_logger_formatter: logging.Formatter = logging.Formatter('%(asctime)s:%(name):%(message)s')
 
-file_handler: logging.FileHandler = logging.FileHandler('logs/logic.log')
-file_handler.setLevel(logging.ERROR)
-file_handler.setFormatter(error_logger_formatter)
+perf_logger: logging.Logger = logging.getLogger('performance')
+perf_logger.setLevel(logging.DEBUG)
 
-debug_logger_formatter: logging.Formatter = logging.Formatter('%(asctime)s:%(message)s')
-stream_handler: logging.StreamHandler = logging.StreamHandler()
-stream_handler.setFormatter(debug_logger_formatter)
-
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
 
 
 class Logic:
@@ -74,6 +78,8 @@ class Logic:
         self.parameter_file: str = self.feature_extraction_settings.load_radiomics_params_file()
         self.radiomic_feature_calculator: FeatureCalculator = radiomic_feature_calculator
         self.roi_selector: ROISelector = roi_selector
+        self.data_path: Path = Path('../conquest/data').resolve()
+        self.plastimatch_path: Path = Path("tools/Plastimatch/bin/plastimatch.exe").resolve()
 
     def get_patient_overview(self) -> List[Patient]:
         """
@@ -130,8 +136,20 @@ class Logic:
             # Extracts the CT-, PET- or MRI-Series out of the found result.
             series_of_image_slices: SeriesWithImageSlices = patient_series_instance[2]
 
-            # Loads the data of the DICOM-file from the CT-, PET- or MRI- series' images.
-            images_slices: List[Image] = self.dicom_file_reader.read_multiple_dicom_files(series_of_image_slices.images)
+            # Loads the path of the DICOM-file from the CT-, PET- or MRI- series' images.
+            dicom_paths: List[Path] = [self.data_path / image.object_file for image in series_of_image_slices.images]
+    
+            subject_folder = tempfile.TemporaryDirectory()
+
+            # Copy dicom paths of a particular series into subject folder
+            for dicom_path in dicom_paths:
+                dicom_path = dicom_path.resolve()
+                shutil.copy(dicom_path, Path(subject_folder.name) / dicom_path.name)
+
+
+            # Loads the sitk_image and data from the DICOM paths!
+            data, image, metadata = read_dcm_series(dicom_paths, return_sitk=True)
+
 
             # Loads the data of the DICOM-file from the RTSTRUCT-series image.
             rtstruct: Image = self.dicom_file_reader.read_dicom_file(rtstruct_series.image)
@@ -141,6 +159,33 @@ class Logic:
                 # When there was an error loading the DICOM-file of the RTSTRUCT the program will skip the calculation
                 # of the radiomic features.
                 continue
+
+            rtstruct_filename: Path = (self.data_path / rtstruct.object_file).resolve()
+
+
+            # Create intermediate directory for plastimatch artifacts
+            intermediate_dir = tempfile.TemporaryDirectory()
+
+            intermediate_path: Path = Path(intermediate_dir.name)
+
+
+            image_path = intermediate_path.resolve() / "image.nrrd"
+
+            write_with_sitk(image, image_path)
+
+
+
+            plastimatch_start_time: float = time.perf_counter()
+
+            plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder.name)} \
+                    --output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
+
+            logger.info(f"Running plastimatch command: {plastimatch_command.split()}")
+            out = subprocess.check_output(plastimatch_command.split())
+
+            plastimatch_run_time: float = time.perf_counter() - plastimatch_start_time
+
+            perf_logger.info(f"Took {plastimatch_run_time} to run plastimatch conversion")
 
             # Loads all the ROI's from the RTSTRUCT.
             rois: Dict[ROI, int] = self.roi_selector.get_rois_of_rtstruct(rtstruct)
@@ -166,7 +211,10 @@ class Logic:
             succesful_feature_calculations: int = 0
 
             roi: ROI
+
             # Calculates radiomic feature for all ROI's.
+            pyradiomics_start_time: float = time.perf_counter()
+
             for roi in rois:
                 # Gets the number of the roi from the database.
                 roi_number: int = self.data_access_layer.roi_repos.get_dicom_segmentation(rtstruct_series, roi).number
@@ -175,10 +223,9 @@ class Logic:
 
                 # Tries to generate a 3d image and a binary mask from the given rtstruct, image_slices and roi.
                 try:
-                    image: sitk.Image
-                    mask: sitk.Image
-                    image, mask = self.binary_mask_generator.generate_binary_mask_and_3d_image(images_slices, rtstruct,
-                                                                                               roi, roi_number)
+                    mask_path = (intermediate_path / (roi.name + ".nrrd")).resolve()
+                    mask = sitk.ReadImage(str(mask_path))                                                               
+
                 except (IndexError, AttributeError, TypeError):
                     # Failed to generate the binary mask and 3d image. The calculation for the ROI will be skipped.
                     logger.error("An exception occurred while generation binary mask and 3d image for roi {0}".format(
@@ -201,6 +248,13 @@ class Logic:
             logger.info("Successfully calculated radiomic features for {0} of {1} ROI's".format(
                 succesful_feature_calculations, len(rois)))
 
+
+            pyradiomics_run_time: float = time.perf_counter() - pyradiomics_start_time
+
+            perf_logger.info(f"Took {pyradiomics_run_time} to run pyradiomics feature extraction over all selected ROIs")
             # Gets a path to the csv file with all calculated results.
             self.data_access_layer.get_radiomic_feature_repos().get_radiomic_calculation_result(
                 radiomic_calculation.identity)
+
+
+            intermediate_dir.cleanup()

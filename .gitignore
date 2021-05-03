@@ -1,4 +1,12 @@
 
 radiomicsfeatureextractionpipeline/venv/
-radiomicsfeatureextractionpipeline/conquest/data/*.dcm
+radiomicsfeatureextractionpipeline/conquest/data/*/*.dcm
 radiomicsfeatureextractionpipeline/conquest/dicom.ini
+radiomicsfeatureextractionpipeline/backend/tools/*
+RIDER
+MMD
+*.xlsx
+/*.csv
+*.zip
+
+__pycache__

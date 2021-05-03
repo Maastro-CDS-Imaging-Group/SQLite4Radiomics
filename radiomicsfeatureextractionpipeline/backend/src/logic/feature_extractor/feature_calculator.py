@@ -19,7 +19,7 @@ class FeatureCalculator(ABC):
         self.parameter_file: str = parameter_file
 
         self._extractor: featureextractor.RadiomicsFeaturesExtractor = featureextractor.RadiomicsFeaturesExtractor(parameter_file)
-        #self._extractor.loadParams()
+        self._extractor.loadParams(parameter_file)
 
     @abstractmethod
     def calculate_features(self, radiomic_calculation: RadiomicCalculation, image: sitk.Image, mask: sitk.Image,

@@ -1,1 +1,1 @@
-scripts\venv-setup & venv\scripts\activate & scripts\install-python-packages & scripts\conquest-setup & scripts\install-node-packages & ..\scripts\angular-build
+scripts\venv-setup & venv\scripts\activate & scripts\install-python-packages & scripts\conquest-setup & scripts\install-node-packages & ..\scripts\angular-build & cd .. & mkdir conquest\data\incoming & scripts\install-plastimatch

@@ -1,6 +1,6 @@
 # SQLite4Radiomics
 
-SQLite4Radiomics is an integration project of the popular PACS driver Conquest with radiomics extraction package 
+SQLite4Radiomics is an integration project of the popular PACS software *Conquest DICOM* with radiomics extraction package *pyradiomics* 
 
 ## Getting Started
 
@@ -16,11 +16,13 @@ SQLite4Radiomics was originally written for Windows 10 platform. It should in pr
 
 The user should also have some experience with working with Radiomics.
 
-It is recommended that the user read about Pyradiomics. This will help to understand how the parameters work and how they can be used.
+Prior to using SQLite4Radiomics, we recommend to learn more about (*pyradiomics documentation*)[https://pyradiomics.readthedocs.io/en/latest/] and (*The Image Biomarker Standardization Initiative*)[https://pubs.rsna.org/doi/full/10.1148/radiol.2020191145]. In order to understand how pyradiomics feature extraction is customized, please refer to
 
-This will also help understand how to use and modify the parameter file – refer to https://pyradiomics.readthedocs.io/en/latest/customization.html
+```
+https://pyradiomics.readthedocs.io/en/latest/customization.html
+```
 
-Once you have read this, you are better equipped to modify the Parameter file according to your needs.
+Once you have read this, you are better equipped to run radiomic analyses and customize pyradiomics extraction settings by the Parameter file modifications according to your needs.
 
 #### Python
 
@@ -35,19 +37,12 @@ Go to https://nodejs.org/en/ and download the appropriate installer for your sys
 Follow the necessary steps to install NodeJs.
 
 #### Clone the repository
-1. Clone the git repository with
+Clone the git repository with
 
 ```
-git clone https://github.com/ivanzhovannik/SQLite4Radiomics
+git clone https://github.com/Maastro-CDS-Imaging-Group/SQLite4Radiomics
 ```
 
-2. As *Conquest DICOM* is an independent software, download it from https://ingenium.home.xs4all.nl/dicom.html
-
-3. Unzip conquest into
-
-```
-./SQLite4Radiomics/radiomicsfeatureextractionpipeline/conquest/
-```
 
 #### Setting up
 
@@ -119,13 +114,15 @@ We will not be keeping active management of the master branch and therefore will
 
 ## Authors and citation
 
-* **Ivan Zhovannik** - *Initial idea* - Radboudumc Radiotherapy & [CDS Maastro](https://gitlab.com/UM-CDS/distributedradiomics)
-* **Talia Santos** - *GUI and production development* - Radboudumc Radiotherapy & Fontys
-* **Lars L.G. van Driel** - *Initial development* - Radboudumc Radiotherapy & Fontys
-* **Johan Bussink** - *Clinical support* - Radboudumc Radiotherapy
-* **Ren'e Monshouwer** - *Principle Investigator* - Radboudumc Radiotherapy
+* **Ivan Zhovannik** - *Initial idea, backend development, testing, and benchmarking* - Radboudumc Radiation Oncology department & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
+* **Suraj Pai** - *Backend development, testing, and benchmarking* - Maastricht University & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
+* **Talia Santos** - *GUI and production development* - Radboudumc Radiation Oncology department & Fontys University of Applied Sciences
+* **Lars L.G. van Driel** - *Initial development* - Radboudumc Radiation Oncology department & Fontys University of Applied Sciences
+* **Andre Dekker**, **Rianne Fijten**, **Alberto Traverso** - *Clinical support and medical imaging* - Maastro Clinic Clinical Data Science
+* **Johan Bussink** - *Clinical support* - Radboudumc Radiation Oncology department
+* **René Monshouwer** - *Principle Investigator* - Radboudumc Radiation Oncology department
 
-The technical note about SQLite4radioics is in preparation.
+The technical note about SQLite4radiomics is currently under review, we will update the citation as soon as the article published.
 
 ## License
 

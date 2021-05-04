@@ -126,7 +126,7 @@ The technical note about SQLite4radiomics is currently under review, we will upd
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
 
 Copyright (c) 2020 University of Manchester. Developed by Marcel van Herk, Lambert Zijp and Jan Meinders; the Netherlands Cancer Institute; Radiotherapy Department; maintained by Marcel van Herk, University of Manchester.
 
@@ -134,7 +134,8 @@ Copyright (c) 1995 Regents of the University of California. All rights reserved.
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+The contributors would like to thank 
+* The IBSI, 3D slicer and pyradiomics communities for providing valuable feedback on radiomics side of the project;
+* Marcel van Herk for keeping the support of Conquest DICOM;
+* plastimatch for making DICOM RT -> NRRD translation reproducible.
 

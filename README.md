@@ -108,10 +108,10 @@ We will not be keeping active management of the master branch and therefore will
 
 ## Authors and citation
 
-* **Ivan Zhovannik** - *Initial idea, backend development, testing, and benchmarking* - Radboudumc Radiation Oncology department & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
-* **Suraj Pai** - *Backend development, testing, and benchmarking* - Maastricht University & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
+* **Ivan Zhovannik** - *Initial idea, pipeline development, testing, and benchmarking* - Radboudumc Radiation Oncology department & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
+* **Suraj Pai** - *Pipeline development, testing, and benchmarking* - Maastricht University & [Maastro Clinic CDS Imaging group](https://github.com/Maastro-CDS-Imaging-Group)
 * **Talia Santos** - *GUI and production development* - Radboudumc Radiation Oncology department & Fontys University of Applied Sciences
-* **Lars L.G. van Driel** - *Initial development* - Radboudumc Radiation Oncology department & Fontys University of Applied Sciences
+* **Lars L.G. van Driel** - *Pipeline development* - Radboudumc Radiation Oncology department & Fontys University of Applied Sciences
 * **Andre Dekker**, **Rianne Fijten**, **Alberto Traverso** - *Clinical support and medical imaging* - Maastro Clinic Clinical Data Science
 * **Johan Bussink** - *Clinical support* - Radboudumc Radiation Oncology department
 * **René Monshouwer** - *Principle Investigator* - Radboudumc Radiation Oncology department

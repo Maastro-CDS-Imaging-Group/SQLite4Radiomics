@@ -16,13 +16,7 @@ SQLite4Radiomics was originally written for Windows 10 platform. It should in pr
 
 The user should also have some experience with working with Radiomics.
 
-Prior to using SQLite4Radiomics, we recommend to learn more about (*pyradiomics documentation*)[https://pyradiomics.readthedocs.io/en/latest/] and (*The Image Biomarker Standardization Initiative*)[https://pubs.rsna.org/doi/full/10.1148/radiol.2020191145]. In order to understand how pyradiomics feature extraction is customized, please refer to
-
-```
-https://pyradiomics.readthedocs.io/en/latest/customization.html
-```
-
-Once you have read this, you are better equipped to run radiomic analyses and customize pyradiomics extraction settings by the Parameter file modifications according to your needs.
+Prior to using SQLite4Radiomics, we recommend to learn more about [*pyradiomics*](https://pyradiomics.readthedocs.io/en/latest/) and [*The Image Biomarker Standardization Initiative*](https://pubs.rsna.org/doi/full/10.1148/radiol.2020191145). In order to understand how pyradiomics feature extraction is customized, please refer to [*pyradiomics customization*](https://pyradiomics.readthedocs.io/en/latest/customization.html). Once you have made yourself familiar with these sources, you are better equipped to run radiomic analyses and customize pyradiomics extraction settings by the Parameter file modifications according to your needs.
 
 #### Python
 

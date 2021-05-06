@@ -120,6 +120,8 @@ class Logic:
         :return: The method doesn't return anything.
         """
 
+        perf_logger.info("Measuring the Performance")
+
         # Loads the patient data, the RTSTRUCT-series data and the CT-, PET- or MRI-series that are connected to the
         # SOP-instance.
         patient_series_instances: List[Tuple[Patient, RtstructSeries, SeriesWithImageSlices]] = \
@@ -216,6 +218,9 @@ class Logic:
             pyradiomics_start_time: float = time.perf_counter()
 
             for roi in rois:
+
+                roi_start_time: float = time.perf_counter()
+
                 # Gets the number of the roi from the database.
                 roi_number: int = self.data_access_layer.roi_repos.get_dicom_segmentation(rtstruct_series, roi).number
 
@@ -241,7 +246,11 @@ class Logic:
                     logger.error("An exception occurred while calculating the features for roi {0}".format(roi.name))
                     logger.error("Skipping feature extraction for roi {0}".format(roi.name))
                     continue
+
                 # Successfully calculated the radiomic features for the ROI.
+                roi_run_time: float = time.perf_counter() - roi_start_time
+                perf_logger.info(f"Took {roi_run_time} to run plastimatch conversion")
+                #perf_logger.info(dir(radiomic_calculation))
                 logger.info("Successfully extracted features for roi {0}".format(roi.name))
                 succesful_feature_calculations += 1
 
@@ -252,6 +261,9 @@ class Logic:
             pyradiomics_run_time: float = time.perf_counter() - pyradiomics_start_time
 
             perf_logger.info(f"Took {pyradiomics_run_time} to run pyradiomics feature extraction over all selected ROIs")
+            perf_logger.info("Finished measuring the Performance")
+
+
             # Gets a path to the csv file with all calculated results.
             self.data_access_layer.get_radiomic_feature_repos().get_radiomic_calculation_result(
                 radiomic_calculation.identity)

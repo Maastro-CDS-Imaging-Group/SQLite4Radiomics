@@ -182,7 +182,7 @@ class Logic:
             plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder.name)} \
                     --output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
 
-            logger.info(f"Running plastimatch command: {plastimatch_command.split()}")
+            logger.info(f"Running plastimatch command: {plastimatch_command}")
             out = subprocess.check_output(plastimatch_command.split())
 
             plastimatch_run_time: float = time.perf_counter() - plastimatch_start_time
@@ -240,17 +240,19 @@ class Logic:
 
                 # Tries to calculate the radiomic features for the given 3d image, binary mask and roi.
                 try:
-                    self.radiomic_feature_calculator.calculate_features(radiomic_calculation, image,  mask, roi)
+                    result = self.radiomic_feature_calculator.calculate_features(radiomic_calculation, image,  mask, roi, return_result=True)
                 except (RuntimeError, ValueError):
                     # Failed to calculate the radiomic features. The calculation for the ROI will be skipped.
                     logger.error("An exception occurred while calculating the features for roi {0}".format(roi.name))
                     logger.error("Skipping feature extraction for roi {0}".format(roi.name))
                     continue
 
-                # Successfully calculated the radiomic features for the ROI.
+                # Successfully calculated the radiomic features for the ROI. Logging the performance.
                 roi_run_time: float = time.perf_counter() - roi_start_time
-                perf_logger.info(f"Took {roi_run_time} to run plastimatch conversion")
-                #perf_logger.info(dir(radiomic_calculation))
+                perf_logger.info(f"Took {roi_run_time} to run the calculation for {roi.name} ROI.")
+                perf_logger.info(f"Took {roi_run_time / result['original_shape_VoxelVolume']} normalized by VoxelVolume to run the calculation for {roi.name} ROI with {result['original_shape_VoxelVolume']} volume")
+                perf_logger.info(f"Took {roi_run_time / result['diagnostics_Mask-original_VoxelNum']} normalized by VoxelNum to run the calculation for {roi.name} ROI with {result['diagnostics_Mask-original_VoxelNum']} voxels")
+                
                 logger.info("Successfully extracted features for roi {0}".format(roi.name))
                 succesful_feature_calculations += 1
 

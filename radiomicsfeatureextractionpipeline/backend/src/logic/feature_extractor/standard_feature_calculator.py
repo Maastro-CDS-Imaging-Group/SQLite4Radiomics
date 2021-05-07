@@ -20,7 +20,7 @@ class StandardFeatureCalculator(FeatureCalculator):
     def __init__(self, radiomic_feature_repos: RadiomicFeatureRepository, parameter_file: str):
         super().__init__(radiomic_feature_repos, parameter_file)
 
-    def calculate_features(self, radiomic_calculation, image: sitk.Image, mask: sitk.Image, roi: ROI) -> None:
+    def calculate_features(self, radiomic_calculation, image: sitk.Image, mask: sitk.Image, roi: ROI, return_result=False) -> None:
         """
 
         :param radiomic_calculation:
@@ -33,6 +33,8 @@ class StandardFeatureCalculator(FeatureCalculator):
         result: Dict[str, str] = self._extractor.execute(image, mask)
         feature: str
         value: str
+
+
         for feature, value in result.items():
             feature_description: List[str] = feature.split('_')
 
@@ -54,3 +56,7 @@ class StandardFeatureCalculator(FeatureCalculator):
 
             feature_value: RadiomicFeatureValue = RadiomicFeatureValue(roi, feature_filter, feature_class, feature, value)
             self.radiomic_feature_repos.save_radiomic_feature_value(radiomic_calculation, feature_value)
+
+        # for benchmarking
+        if return_result:
+            return result

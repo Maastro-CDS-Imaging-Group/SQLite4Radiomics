@@ -120,8 +120,6 @@ class Logic:
         :return: The method doesn't return anything.
         """
 
-        perf_logger.info("Measuring the Performance")
-
         # Loads the patient data, the RTSTRUCT-series data and the CT-, PET- or MRI-series that are connected to the
         # SOP-instance.
         patient_series_instances: List[Tuple[Patient, RtstructSeries, SeriesWithImageSlices]] = \
@@ -263,7 +261,7 @@ class Logic:
             pyradiomics_run_time: float = time.perf_counter() - pyradiomics_start_time
 
             perf_logger.info(f"Took {pyradiomics_run_time} to run pyradiomics feature extraction over all selected ROIs")
-            perf_logger.info("Finished measuring the Performance")
+            
 
 
             # Gets a path to the csv file with all calculated results.

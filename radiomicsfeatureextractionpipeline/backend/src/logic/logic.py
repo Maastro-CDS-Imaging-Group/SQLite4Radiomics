@@ -178,7 +178,7 @@ class Logic:
             plastimatch_start_time: float = time.perf_counter()
 
             plastimatch_command = f"{str(self.plastimatch_path)} convert --input {str(rtstruct_filename)} --referenced-ct {str(subject_folder.name)} \
-                    --output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
+--output-prefix {str(intermediate_path)} --prefix-format nrrd --fixed {str(image_path)}"
 
             logger.info(f"Running plastimatch command: {plastimatch_command}")
             out = subprocess.check_output(plastimatch_command.split())

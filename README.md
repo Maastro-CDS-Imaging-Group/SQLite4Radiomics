@@ -46,9 +46,9 @@ If when running this file, the command prompt window immediately closes after ex
 ### Usage
 
 #### Setting up your data
-Go to the conquest folder and run `ConquestDICOMServer.exe`
+Go to the `conquest` folder and run `ConquestDICOMServer.exe`
 
-When Conquest is running, go to the data folder and open the incoming folder within. Drop your DICOM files here while Conquest is running. 
+When Conquest is running, go to the `data` folder and open the `incoming` folder within. Drop your DICOM files here while Conquest is running. 
 
 #### Running the tool
 
@@ -64,7 +64,7 @@ C:\Users\username\AppData\Local\Programs\Python\Python36
 (note that username should be the name of the profile on your machine)
 
 
-In this folder there is a `Python.ex`e file. Make a copy of this file and rename it to Python3.exe
+In this folder there is a `Python.exe` file. Make a copy of this file and rename it to `Python3.exe`
 
 In the folder where the Sqlite4Radiomics is located, there is a scripts folder. Within, you can find a batch file named `venv-setup.bat`.
 

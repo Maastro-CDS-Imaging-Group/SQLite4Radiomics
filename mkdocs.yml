@@ -1,0 +1,10 @@
+site_name: SQLite4Radiomics
+
+nav:
+    - Home: index.md
+    - Pre-Requisites: req.md
+    - Installation: install.md
+    - Usage: usage.md
+    - Troubleshooting: troubleshoot.md
+
+theme: readthedocs

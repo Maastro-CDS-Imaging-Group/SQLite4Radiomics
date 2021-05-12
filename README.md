@@ -4,7 +4,7 @@ SQLite4Radiomics is an integration project of the popular PACS software *Conques
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for usage and or development purposes. Make sure to check the Software User Manual included in the project.
+These instructions will get you a copy of the project up and running on your local machine for usage and or development purposes. Make sure to check the [Software User Manual](https://github.com/Maastro-CDS-Imaging-Group/SQLite4Radiomics/blob/master/radiomicsfeatureextractionpipeline/Software%20User%20Manual.pdf) included in the project.
 
 Prior to using SQLite4Radiomics, we recommend to learn more about [*pyradiomics*](https://pyradiomics.readthedocs.io/en/latest/) and [*The Image Biomarker Standardization Initiative*](https://pubs.rsna.org/doi/full/10.1148/radiol.2020191145). In order to understand how pyradiomics feature extraction is customized, please refer to [*pyradiomics customization*](https://pyradiomics.readthedocs.io/en/latest/customization.html). Once you have made yourself familiar with these sources, you are better equipped to run radiomic analyses and customize pyradiomics extraction settings by the Parameter file modifications according to your needs.
 

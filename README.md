@@ -1,5 +1,9 @@
 # SQLite4Radiomics
 
+*You can access the docs at https://sqlite4radiomics.rtfd.io*
+
+
+
 SQLite4Radiomics is an integration project of the popular PACS software *Conquest DICOM* with radiomics extraction package *pyradiomics* 
 
 ## Getting Started

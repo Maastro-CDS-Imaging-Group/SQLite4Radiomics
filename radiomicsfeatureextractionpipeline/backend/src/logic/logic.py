@@ -25,6 +25,7 @@ from logic.entities.rtstruct_series import RtstructSeries
 from logic.entities.series import Series
 from logic.entities.series_with_image_slices import SeriesWithImageSlices
 from logic.dicom_file_reader.image_reader import read_dcm_series, write_with_sitk
+from logic.image_operation.image_operation import perform_image_operation, ImageMaskStruct
 
 from pathlib import Path
 
@@ -236,9 +237,26 @@ class Logic:
                     logger.error("Skipping feature extraction for roi {0}".format(roi.name))
                     continue
 
+                try:
+                    transformation_settings: dict = {
+                        "mode": "default"
+                    }
+                    
+                    image, mask = perform_image_operation(
+                        image=image, mask=mask,
+                        **transformation_settings
+                    )
+                except (ValueError):
+                    logger.error(f"An exception occured while performing image pre-processing for \nROI {roi.name}\nand settings={transformation_settings}")
+
                 # Tries to calculate the radiomic features for the given 3d image, binary mask and roi.
                 try:
-                    result = self.radiomic_feature_calculator.calculate_features(radiomic_calculation, image,  mask, roi, return_result=True)
+                    result = self.radiomic_feature_calculator.calculate_features(
+                        radiomic_calculation,
+                        image,  mask,
+                        roi,
+                        return_result=True
+                    )
                 except (RuntimeError, ValueError):
                     # Failed to calculate the radiomic features. The calculation for the ROI will be skipped.
                     logger.error("An exception occurred while calculating the features for roi {0}".format(roi.name))

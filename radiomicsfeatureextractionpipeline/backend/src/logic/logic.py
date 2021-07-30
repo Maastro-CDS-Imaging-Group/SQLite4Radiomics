@@ -25,7 +25,7 @@ from logic.entities.rtstruct_series import RtstructSeries
 from logic.entities.series import Series
 from logic.entities.series_with_image_slices import SeriesWithImageSlices
 from logic.dicom_file_reader.image_reader import read_dcm_series, write_with_sitk
-from logic.image_operation.image_operation import perform_image_operation, ImageMaskStruct
+from logic.image_operation.image_operation import perform_image_operation
 
 from pathlib import Path
 

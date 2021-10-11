@@ -1,8 +1,6 @@
 # SQLite4Radiomics
 
-*You can access the docs at https://sqlite4radiomics.rtfd.io*
-
-
+*You can access the docs at https://sqlite4radiomics.rtfd.io and the paper at https://doi.org/10.1016/j.phro.2021.09.007*
 
 SQLite4Radiomics is an integration project of the popular PACS software *Conquest DICOM* with radiomics extraction package *pyradiomics* 
 
@@ -112,7 +110,19 @@ We will not be keeping active management of the master branch and therefore will
 * **Johan Bussink** - *Clinical support* - Radboudumc Radiation Oncology department
 * **René Monshouwer** - *Principle Investigator* - Radboudumc Radiation Oncology department
 
-The technical note about SQLite4radiomics is currently under review, we will update the citation as soon as the article published.
+#### Citation:
+
+Ivan Zhovannik, Suraj Pai, Talia A. da Silva Santos, Lars L.G. van Driel, Andre Dekker, Rianne Fijten, Alberto Traverso, Johan Bussink, René Monshouwer,
+Radiomics integration into a picture archiving and communication system,
+Physics and Imaging in Radiation Oncology,
+Volume 20,
+2021,
+Pages 30-33,
+ISSN 2405-6316,
+https://doi.org/10.1016/j.phro.2021.09.007.
+(https://www.sciencedirect.com/science/article/pii/S2405631621000579)
+Abstract:  Radiomics is referred to as quantitative imaging of biomarkers used for clinical outcome prognosis or tumor characterization. In order to bridge radiomics and its clinical application, we aimed to build an integrated solution of radiomics extraction with an open-source Picture Archiving and Communication System (PACS). The integrated SQLite4Radiomics software was tested in three different imaging modalities and its performance was benchmarked in lung cancer open datasets RIDER and MMD with median extraction time of 10.7 (percentiles 25–75: 8.9–18.7) seconds per ROI in three different configurations.
+Keywords: Radiomics; Conquest DICOM; PACS
 
 ## License
 

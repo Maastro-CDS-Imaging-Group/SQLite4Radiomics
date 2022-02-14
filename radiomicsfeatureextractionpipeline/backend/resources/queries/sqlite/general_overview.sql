@@ -1,7 +1,7 @@
 select
 PatientID as Patient_ID, PatientNam as Patient_Name, PatientSex as Patient_Sex, 
 
-(select dt.PatientsAg from dicomstudies as dt where dt.PatientID= dicompatients.patientid ) as Patient_Age,
+(select dt.PatientsAg from dicomstudies as dt where dt.PatientID = dicompatients.patientid ) as Patient_Age,
 
 (select count(*) from dicomseries as ds where ds.seriespat = dicompatients.patientid and ds.modality='RTSTRUCT') as RTStructs,
 
